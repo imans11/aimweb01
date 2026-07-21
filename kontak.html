@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak Kami</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Hubungi Saya</h1>
+        <p>Kirimkan pesan atau pertanyaanmu melalui formulir di bawah ini.</p>
+        
+        <!-- Navigasi -->
+        <nav style="margin-top: 15px;">
+            <a href="index.html" style="color: white; margin-right: 15px; text-decoration: none;">Beranda</a>
+            <a href="galeri.html" style="color: white; margin-right: 15px; text-decoration: none;">Galeri</a>
+            <a href="kontak.html" style="color: white; text-decoration: none; font-weight: bold;">Kontak</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Formulir Pesan</h2>
+            <form onsubmit="kirimPesan(event)">
+                <div style="margin-bottom: 15px;">
+                    <label for="nama" style="display: block; margin-bottom: 5px; font-weight: bold;">Nama:</label>
+                    <input type="text" id="nama" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold;">Email:</label>
+                    <input type="email" id="email" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label for="pesan" style="display: block; margin-bottom: 5px; font-weight: bold;">Pesan:</label>
+                    <textarea id="pesan" rows="4" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+                </div>
+
+                <button type="submit">Kirim Pesan</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Dibuat oleh Saya</p>
+    </footer>
+
+    <!-- JavaScript Sederhana untuk Menangani Formulir -->
+    <script>
+        function kirimPesan(event) {
+            event.preventDefault(); // Mencegah halaman melakukan reload bawaan form
+            
+            // Mengambil nilai input dari pengguna
+            const namaPengguna = document.getElementById('nama').value;
+            
+            // Menampilkan kotak pop-up konfirmasi
+            alert(`Terima kasih, ${namaPengguna}! Pesan Anda telah berhasil dikirim.`);
+            
+            // Mengosongkan kembali form setelah dikirim
+            event.target.reset();
+        }
+    </script>
+
+</body>
+</html>
