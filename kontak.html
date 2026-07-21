@@ -1,71 +1,67 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontak Kami</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', }
+    </script>
 </head>
-<body>
 
-    <header>
-        <h1>Hubungi Saya</h1>
-        <p>Kirimkan pesan atau pertanyaanmu melalui formulir di bawah ini.</p>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 min-h-screen flex flex-col">
+
+    <header class="bg-green-500 dark:bg-green-700 text-white p-8 flex flex-col items-center">
+        <h1 class="text-3xl font-bold mb-2">Hubungi Saya</h1>
+        <p class="mb-4">Kirimkan pesan atau pertanyaanmu melalui formulir di bawah ini.</p>
         
-        <!-- Navigasi -->
-        <nav style="margin-top: 15px;">
-            <a href="index.html" style="color: white; margin-right: 15px; text-decoration: none;">Beranda</a>
-            <a href="galeri.html" style="color: white; margin-right: 15px; text-decoration: none;">Galeri</a>
-            <a href="kontak.html" style="color: white; text-decoration: none; font-weight: bold;">Kontak</a>
+        <nav class="space-x-6 mt-2">
+            <a href="index.html" class="hover:text-gray-300">Beranda</a>
+            <a href="galeri.html" class="hover:text-gray-300">Galeri</a>
+            <a href="kontak.html" class="font-bold underline hover:text-gray-300">Kontak</a>
         </nav>
     </header>
 
-    <main>
+    <main class="flex-1 w-11/12 max-w-3xl mx-auto my-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
         <section>
-            <h2>Formulir Pesan</h2>
-            <!-- Ganti action dengan URL dari Formspree kamu -->
-<form action="https://formspree.io/f/xpqvlywv" method="POST">
-    
-    <!-- Tambahkan atribut name="..." pada setiap input agar Formspree bisa membaca datanya -->
-    <div style="margin-bottom: 15px;">
-        <label for="nama">Nama:</label>
-        <input type="text" id="nama" name="nama" required>
-    </div>
+            <h2 class="text-2xl font-bold mb-4 border-b-2 border-green-500 pb-2">Formulir Pesan</h2>
+            
+            <!-- Ganti dengan URL Formspree milikmu -->
+            <form action="https://formspree.io/f/xpqvlywv" method="POST" class="space-y-4">
+                
+                <div>
+                    <label for="nama" class="block font-bold mb-1">Nama:</label>
+                    <input type="text" id="nama" name="nama" required class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600">
+                </div>
 
-    <div style="margin-bottom: 15px;">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-    </div>
+                <div>
+                    <label for="email" class="block font-bold mb-1">Email:</label>
+                    <input type="email" id="email" name="email" required class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600">
+                </div>
 
-    <div style="margin-bottom: 15px;">
-        <label for="pesan">Pesan:</label>
-        <textarea id="pesan" name="pesan" rows="4" required></textarea>
-    </div>
+                <div>
+                    <label for="pesan" class="block font-bold mb-1">Pesan:</label>
+                    <textarea id="pesan" name="pesan" rows="4" required class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600"></textarea>
+                </div>
 
-    <button type="submit">Kirim Pesan</button>
-</form>
+                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition">
+                    Kirim Pesan
+                </button>
+            </form>
         </section>
     </main>
 
-    <footer>
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white text-center p-4 mt-auto">
         <p>&copy; 2026 Dibuat oleh Saya</p>
     </footer>
 
-    <!-- JavaScript Sederhana untuk Menangani Formulir -->
+    <!-- Skrip pengecek memori Dark Mode -->
     <script>
-        function kirimPesan(event) {
-            event.preventDefault(); // Mencegah halaman melakukan reload bawaan form
-            
-            // Mengambil nilai input dari pengguna
-            const namaPengguna = document.getElementById('nama').value;
-            
-            // Menampilkan kotak pop-up konfirmasi
-            alert(`Terima kasih, ${namaPengguna}! Pesan Anda telah berhasil dikirim.`);
-            
-            // Mengosongkan kembali form setelah dikirim
-            event.target.reset();
+        if (localStorage.getItem('tema') === 'gelap') {
+            document.documentElement.classList.add('dark');
         }
     </script>
-
 </body>
 </html>
