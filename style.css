@@ -1,0 +1,85 @@
+/* Mengatur tampilan umum halaman */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Menggunakan Flexbox di Header agar kontennya pas di tengah */
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mengatur konten utama agar fleksibel */
+main {
+    flex: 1;
+    max-width: 800px;
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Styling untuk tombol interaktif kita */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Mengatur Footer agar selalu di bawah */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #333;
+    color: white;
+    width: 100%;
+}
+/* --- Aturan Responsif untuk Layar HP (Lebar max 600px) --- */
+@media screen and (max-width: 600px) {
+    /* Mengubah ukuran header agar lebih kecil di HP */
+    header {
+        padding: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    /* Mengubah lebar konten utama agar pas dengan layar HP */
+    main {
+        width: 95%;
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    /* Membuat tombol menyesuaikan ukuran penuh di HP agar mudah ditekan */
+    button {
+        width: 100%;
+        font-size: 1.1rem;
+    }
+}
