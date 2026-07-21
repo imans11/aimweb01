@@ -1,37 +1,52 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Pertama Saya</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Memanggil Tailwind CSS agar desain instan tanpa style.css -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Konfigurasi agar Tailwind mendukung fitur Dark Mode
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
 </head>
-<body>
 
-    <header>
-        <h1>Selamat Datang di Website Saya</h1>
-        <p>Saya sedang belajar coding web step-by-step!</p>
+<!-- Kelas transisi warna agar perubahan terang ke gelap terlihat halus -->
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 min-h-screen flex flex-col">
 
-        <!-- Tambahkan Navigasi di sini -->
-        <nav style="margin-top: 15px;">
-            <a href="index.html" style="color: white; margin-right: 15px; text-decoration: none; font-weight: bold;">Beranda</a>
-            <a href="galeri.html" style="color: white; text-decoration: none;">Galeri</a>
-            <a href="kontak.html" style="color: white; text-decoration: none;">Kontak</a>
+    <!-- Header dengan gaya Tailwind -->
+    <header class="bg-green-500 dark:bg-green-700 text-white p-8 flex flex-col items-center">
+        <h1 class="text-3xl font-bold mb-2">Selamat Datang di Website Saya</h1>
+        <p class="mb-4">Saya sedang belajar coding web step-by-step!</p>
+        
+        <nav class="space-x-6 mt-2">
+            <a href="index.html" class="font-bold underline hover:text-gray-300">Beranda</a>
+            <a href="galeri.html" class="hover:text-gray-300">Galeri</a>
+            <a href="kontak.html" class="hover:text-gray-300">Kontak</a>
         </nav>
     </header>
 
-    <main>
-        <section>
-            <h2>Tentang Saya</h2>
-            <p>Halo! Ini adalah halaman web pertama yang berhasil saya buat.</p>
-            
-            <!-- Tambahkan tombol interaktif di sini -->
-            <button onclick="sapaPengguna()">Klik Saya!</button>
+    <main class="flex-1 w-11/12 max-w-3xl mx-auto my-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+        
+        <!-- Tombol Sakelar Dark Mode -->
+        <div class="flex justify-end mb-6">
+            <button onclick="toggleDarkMode()" class="bg-gray-800 dark:bg-yellow-400 text-white dark:text-gray-900 px-4 py-2 rounded-md font-semibold hover:opacity-80 transition">
+                Beralih Mode 🌙 / ☀️
+            </button>
+        </div>
+
+        <section class="mb-6">
+            <h2 class="text-2xl font-bold mb-2 border-b-2 border-green-500 pb-2">Tentang Saya</h2>
+            <p class="mt-2">Halo! Ini adalah halaman web pertama yang menggunakan Tailwind CSS dan dilengkapi fitur Mode Gelap.</p>
         </section>
 
         <section>
-            <h2>Hobi Saya</h2>
-            <ul>
+            <h2 class="text-2xl font-bold mb-2 border-b-2 border-green-500 pb-2">Hobi Saya</h2>
+            <ul class="list-disc list-inside mt-2 space-y-1">
                 <li>Belajar Coding</li>
                 <li>Membaca Buku</li>
                 <li>Mendengarkan Musik</li>
@@ -39,14 +54,30 @@
         </section>
     </main>
 
-    <footer>
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white text-center p-4 mt-auto">
         <p>&copy; 2026 Dibuat oleh Saya</p>
     </footer>
 
-    
-<script>
-        function sapaPengguna() {
-            alert("Halo! Semangat terus ya belajar codingnya! 🚀");
+    <!-- Logika JavaScript untuk LocalStorage Dark Mode -->
+    <script>
+        // 1. Cek memori browser: Apakah sebelumnya user memilih mode gelap?
+        if (localStorage.getItem('tema') === 'gelap') {
+            document.documentElement.classList.add('dark');
+        }
+
+        // 2. Fungsi saat tombol diklik
+        function toggleDarkMode() {
+            const htmlElement = document.documentElement;
+            
+            // Jika saat ini sedang mode gelap, ubah ke terang
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('tema', 'terang'); // Simpan memori
+            } else {
+                // Jika sedang terang, ubah ke gelap
+                htmlElement.classList.add('dark');
+                localStorage.setItem('tema', 'gelap'); // Simpan memori
+            }
         }
     </script>
 </body>
