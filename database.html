@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Latihan Database Firebase</title>
+    <!-- Kita tetap gunakan Tailwind agar rapi -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6 text-center border-b-2 border-blue-500 pb-2">Simpan ke Database</h1>
+        
+        <div class="mb-4">
+            <label class="block font-bold mb-1">Nama Pengguna:</label>
+            <input type="text" id="nama" class="w-full p-2 border rounded" placeholder="Masukkan nama">
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-bold mb-1">Pesan Rahasia:</label>
+            <input type="text" id="pesan" class="w-full p-2 border rounded" placeholder="Ketik sesuatu...">
+        </div>
+
+        <button id="tombolKirim" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition">
+            Simpan Data
+        </button>
+    </div>
+
+    <!-- Skrip Firebase Modern (Module) -->
+    <script type="module">
+        // 1. Mengimpor alat pembuat koneksi ke Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        // 2. GANTI BAGIAN INI DENGAN KODE FIREBASECONFIG MILIKMU SENDIRI
+        const firebaseConfig = {
+            apiKey: "AIzaSyBbBlAxig6WC5-8HR40NBTZOkmcXjhKymg",
+            authDomain: "latihandatabase-84f64.firebaseapp.com",
+            projectId: "latihandatabase-84f64"
+            storageBucket: "latihandatabase-84f64.firebasestorage.app",
+            messagingSenderId: "412418076847",
+            appId: "1:412418076847:web:15247ef87530ef6ded645a"
+        };
+
+        // 3. Menyalakan mesin penghubung
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 4. Memberikan perintah saat tombol diklik
+        const tombol = document.getElementById('tombolKirim');
+        
+        tombol.addEventListener('click', async () => {
+            const inputNama = document.getElementById('nama').value;
+            const inputPesan = document.getElementById('pesan').value;
+
+            // Memastikan kolom tidak kosong
+            if(inputNama === "" || inputPesan === "") {
+                alert("Semua kolom wajib diisi!");
+                return;
+            }
+
+            tombol.innerText = "Menyimpan ke Server...";
+
+            try {
+                // Perintah untuk membuat dokumen baru di dalam tabel "pesan_masuk"
+                await addDoc(collection(db, "pesan_masuk"), {
+                    nama_pengguna: inputNama,
+                    isi_pesan: inputPesan,
+                    waktu_tersimpan: new Date()
+                });
+                
+                alert("Sukses! Buka dashboard Firebase-mu, datanya sudah masuk!");
+                
+                // Mengosongkan form
+                document.getElementById('nama').value = "";
+                document.getElementById('pesan').value = "";
+            } catch (error) {
+                alert("Gagal menyimpan data. Cek koneksi internetmu.");
+                console.error(error);
+            } finally {
+                tombol.innerText = "Simpan Data";
+            }
+        });
+    </script>
+</body>
+</html>
